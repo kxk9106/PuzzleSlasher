@@ -17,8 +17,8 @@ public class Move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		dir.x = Input.acceleration.x*6;
-		dir.z = Input.acceleration.y*6;
+		dir.x = -Input.acceleration.x*2;
+		dir.z = -Input.acceleration.y*2;
 		/*if (dir.sqrMagnitude > 1) {
 			dir.Normalize();
 		}*/
