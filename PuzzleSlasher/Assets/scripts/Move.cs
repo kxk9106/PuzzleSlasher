@@ -5,7 +5,7 @@ public class Move : MonoBehaviour {
 	Vector3 dir = Vector3.zero;
 	public float speed = 300f;
 	public Rigidbody rb;
-	Vector3 start = new Vector3(1.3f,.3f,1);
+	Vector3 start = new Vector3(2.7f,.16f,-7f);
 
 	// Use this for initialization
 	void Start () {
