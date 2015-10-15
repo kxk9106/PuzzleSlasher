@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic; //for list
+
 
 public class Move : MonoBehaviour {
 	Vector3 dir = Vector3.zero;
@@ -7,18 +9,33 @@ public class Move : MonoBehaviour {
 	public Rigidbody rb;
 	Vector3 start = new Vector3(1.0f,.16f,-7f);
 
+	public List<Color> colors;
+
+	void Awake(){
+		Color green = new Color (43, 232, 0);
+		colors.Add (green);
+		Color purple = new Color (83, 0, 255);
+		colors.Add (purple);
+		Color orange = new Color (255, 169, 0);
+		colors.Add (orange);
+		Color pink = new Color (232, 0,134);
+		colors.Add (pink);
+		Color blue = new Color (0, 194, 255);
+		colors.Add (blue);
+	}
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
-
+	
 
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		dir.x = -Input.acceleration.x*2;
-		dir.z = -Input.acceleration.y*2;
+		dir.x = -Input.acceleration.x*4;
+		dir.z = -Input.acceleration.y*4;
 		/*if (dir.sqrMagnitude > 1) {
 			dir.Normalize();
 		}*/
@@ -28,7 +45,8 @@ public class Move : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other){
 		if(other.gameObject.tag=="tile"){
-			other.gameObject.GetComponent<Renderer>().material.color = Color.green;
+			Debug.Log(colors.Count);
+			other.gameObject.GetComponent<Renderer>().material.color = colors[Random.Range(0,(colors.Count))];
 			Debug.Log("Here");
 		}
 		if (other.gameObject.tag == "spike") {
