@@ -18,7 +18,7 @@ public class Ground : MonoBehaviour {
 		GameObject ba = (GameObject)GameObject.Instantiate (ball, ballPos, Quaternion.identity);
 
 		tiles = new List<GameObject> ();
-		for(float i = -3.59f; i < 3.62f; i=i+.5375f){
+		for(float i = -4.59f; i < 4.62f; i=i+.5375f){
 			for(float j = -11.8f; j < .5f; j=j+.5375f){
 				Vector3 pos = new Vector3(i,0,j);
 				GameObject ti = (GameObject)GameObject.Instantiate(tilePrefab,pos,Quaternion.identity);
