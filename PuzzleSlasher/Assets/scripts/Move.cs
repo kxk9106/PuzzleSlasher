@@ -7,7 +7,10 @@ public class Move : MonoBehaviour {
 	Vector3 dir = Vector3.zero;
 	public float speed = 300f;
 	public Rigidbody rb;
+	public bool blackTiles;
 	Vector3 start = new Vector3(1.0f,.16f,-7f);
+	public GameObject[] tiles;
+
 
 	public List<Color> colors;
 
@@ -52,6 +55,11 @@ public class Move : MonoBehaviour {
 		if (other.gameObject.tag == "spike") {
 			this.transform.position = start;
 			Debug.Log ("Spike");
+			tiles = GameObject.FindGameObjectsWithTag ("tile");
+			foreach(GameObject tile in tiles){
+				tile.gameObject.GetComponent<Renderer>().material.color = Color.black;
+			}
+
 		}
 	}
 }
