@@ -28,8 +28,8 @@ public class Ground : MonoBehaviour {
 		zMaze = maze.transform.position.z;
 		//xMazeSize = maze.gameObject.GetComponent<Renderer>().bounds.size.x;
 		//zMazeSize = maze.gameObject.GetComponent<Renderer>().bounds.size.z;
-		xMazeSize = 9;
-		zMazeSize = 11;
+		xMazeSize = 18 * 0.55f;
+		zMazeSize = 22 * 0.55f;
 		xStart = xMaze - xMazeSize / 2;
 		xEnd = xMaze + xMazeSize / 2;
 		zStart = zMaze - zMazeSize / 2;
@@ -46,9 +46,9 @@ public class Ground : MonoBehaviour {
 	
 
 		tiles = new List<GameObject> ();
-		for(float i = xStart; i < xEnd; i=i + xMazeSize/20){
-			for(float j = zStart; j < zEnd; j=j+zMazeSize/16){
-				Vector3 pos = new Vector3(i,0,j);
+		for(float i = xStart; i < xEnd; i=i + xMazeSize/18){
+			for(float j = zStart; j < zEnd; j=j+zMazeSize/22){
+				Vector3 pos = new Vector3(i + .275f,0,j + .275f);
 				GameObject ti = (GameObject)GameObject.Instantiate(tilePrefab,pos,Quaternion.identity);
 				tiles.Add(ti);
 			}
