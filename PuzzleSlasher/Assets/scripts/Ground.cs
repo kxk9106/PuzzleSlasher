@@ -42,7 +42,7 @@ public class Ground : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Vector3 ballPos = start;
-		GameObject ba = (GameObject)GameObject.Instantiate (ball, ballPos, Quaternion.identity);
+		GameObject.Instantiate (ball, ballPos, Quaternion.identity);
 	
 
 		tiles = new List<GameObject> ();
