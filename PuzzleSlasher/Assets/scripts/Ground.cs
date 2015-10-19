@@ -18,7 +18,13 @@ public class Ground : MonoBehaviour {
 	public float zStart;
 	public float zEnd;
 
-	public List<GameObject> tiles;
+	public List<GameObject> tiles = new List<GameObject>();
+    //accessor for tiles list
+    public List<GameObject> getTiles()
+    {
+        return tiles;
+    }//accessor
+
 	public GameObject[] spikes;
 
 	void Awake(){

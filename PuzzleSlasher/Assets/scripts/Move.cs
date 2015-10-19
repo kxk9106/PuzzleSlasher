@@ -11,8 +11,12 @@ public class Move : MonoBehaviour {
 	Vector3 start = new Vector3(1.0f,.16f,-7f);
 	public GameObject[] tiles;
 
-
 	public List<Color> colors;
+
+    //score - to determine level
+    public int score = 0;
+    //walldrop obj
+    WallDrop wallDrop = new WallDrop();
 
 	void Awake(){
 		Color green = new Color (43, 232, 0);
@@ -51,16 +55,37 @@ public class Move : MonoBehaviour {
 			Debug.Log(colors.Count);
 			other.gameObject.GetComponent<Renderer>().material.color = colors[Random.Range(0,(colors.Count))];
 			Debug.Log("Here");
-		}
+		}//if
 		if (other.gameObject.tag == "spike") {
 			this.transform.position = start;
 			Debug.Log ("Spike");
 			tiles = GameObject.FindGameObjectsWithTag ("tile");
 			foreach(GameObject tile in tiles){
 				tile.gameObject.GetComponent<Renderer>().material.color = Color.black;
-			}
+			}//foreach
 
-		}
-	}
+		}//if
+        //if it hits the goal
+        if (other.gameObject.tag == "goal")
+        {
+            //move the ball back
+            this.transform.position = start;
+            Debug.Log("Goooooooooooooooooooooooooooooooaaaaaaaaaaaaaaaaaaaaaaaal");
+            //reset all the tiles
+            tiles = GameObject.FindGameObjectsWithTag("tile");
+            foreach (GameObject tile in tiles)
+            {
+                tile.gameObject.GetComponent<Renderer>().material.color = Color.black;
+            }//foreach
+            //move the wall back
+            if (wallDrop.isDown == true)
+            {
+                //do that here tom//////////////////////////////
+                //
+            }//if
+            //increment the score
+            score++;
+        }//if
+    }
 }
 
