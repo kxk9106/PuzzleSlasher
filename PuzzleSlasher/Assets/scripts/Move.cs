@@ -70,7 +70,7 @@ public class Move : MonoBehaviour {
         {
             //move the ball back
             this.transform.position = start;
-            Debug.Log("Goooooooooooooooooooooooooooooooaaaaaaaaaaaaaaaaaaaaaaaal");
+            Debug.Log("Gooooooooooooaaaaaal");
             //reset all the tiles
             tiles = GameObject.FindGameObjectsWithTag("tile");
             foreach (GameObject tile in tiles)

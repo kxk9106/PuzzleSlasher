@@ -18,7 +18,7 @@ public class Ground : MonoBehaviour {
 	public float zStart;
 	public float zEnd;
 
-	public List<GameObject> tiles = new List<GameObject>();
+	public List<GameObject> tiles;
     //accessor for tiles list
     public List<GameObject> getTiles()
     {

@@ -4,8 +4,8 @@ using System.Collections.Generic; //for list
 
 public class WallDrop : MonoBehaviour {
 
-    public Move move = new Move();
-    public Ground ground = new Ground();
+    public Move move;
+    public Ground ground;
     public int numColored; //number of tiles colored
     public int numTotal; //number of tiles in total
     public float percentColored; //percentage of tiles colored in decimal form
