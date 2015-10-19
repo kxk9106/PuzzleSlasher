@@ -28,6 +28,7 @@ public class Ground : MonoBehaviour {
 	public GameObject[] spikes;
 
 	void Awake(){
+		//sets up maze attributes
 		maze = GameObject.FindGameObjectWithTag ("maze");
 		maze.SetActive (true);
 		xMaze = maze.transform.position.x;
@@ -50,7 +51,7 @@ public class Ground : MonoBehaviour {
 		Vector3 ballPos = start;
 		GameObject.Instantiate (ball, ballPos, Quaternion.identity);
 	
-
+		//makes the floor with tiles
 		tiles = new List<GameObject> ();
 		for(float i = xStart; i < xEnd; i=i + xMazeSize/18){
 			for(float j = zStart; j < zEnd; j=j+zMazeSize/22){
