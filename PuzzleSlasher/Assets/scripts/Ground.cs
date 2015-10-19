@@ -7,7 +7,7 @@ public class Ground : MonoBehaviour {
 	public GameObject tilePrefab;
 	public GameObject ball;
 	public GameObject spike;
-	Vector3 start = new Vector3(1.0f,.16f,-7f);
+	Vector3 start = new Vector3(-4.2f,.16f,-11.2f);
 	public float xMaze;
 	public float zMaze;
 	public float xMazeSize;

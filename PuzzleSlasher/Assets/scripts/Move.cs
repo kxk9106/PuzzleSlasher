@@ -8,15 +8,21 @@ public class Move : MonoBehaviour {
 	public float speed = 300f;
 	public Rigidbody rb;
 	public bool blackTiles;
-	Vector3 start = new Vector3(1.0f,.16f,-7f);
+	Vector3 start = new Vector3(-4.2f,.16f,-11.2f);
 	public GameObject[] tiles;
 
 	public List<Color> colors;
 
     //score - to determine level
-    public int score = 0;
+    public int score;
+
     //walldrop obj
     WallDrop wallDrop = new WallDrop();
+	float coloredTiles;
+	float numTiles;
+	float levelThreshold;
+	GameObject[] wall;
+	Vector3 wallLoc = new Vector3(3.6f, 0.29f, -6.0f);
 
 	void Awake(){
 		//adds new colors to color list for tiles
@@ -35,6 +41,12 @@ public class Move : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
+		tiles = GameObject.FindGameObjectsWithTag ("tile");
+		wall = GameObject.FindGameObjectsWithTag ("gate");
+		coloredTiles = 0;
+		numTiles = tiles.Length;
+		levelThreshold = .25f;
+		score = 0;
 	}
 	
 	// Update is called once per frame
@@ -42,6 +54,21 @@ public class Move : MonoBehaviour {
 		//movement through phone tilt
 		dir.x = -Input.acceleration.x*6;
 		dir.z = -Input.acceleration.y*6;
+
+		if (score == 1) {
+			dir.x += -.5f * 6;
+		}
+		if (score == 2) {
+			dir.z += -.5f * 6;
+		}
+		if (score == 3) {
+			dir.x += .5f *6;
+		}
+
+		if (score == 4) {
+			dir.z += .5f * 6;
+		}
+
 		/*if (dir.sqrMagnitude > 1) {
 			dir.Normalize();
 		}*/
@@ -60,6 +87,20 @@ public class Move : MonoBehaviour {
 		}
 		if (transform.position.z <= -11.6) {
 			newPositionZ(-11.23f);
+		}
+
+		if ((coloredTiles / numTiles) < levelThreshold) {
+			coloredTiles = 0;
+			//check the amount of colored tiles
+			foreach (GameObject tile in tiles) {
+				if (tile.gameObject.GetComponent<Renderer> ().material.color != Color.black) {
+					coloredTiles++;
+				}
+			}
+		} 
+		else {
+			wall[0].transform.Translate(new Vector3(0, -0.1f * Time.deltaTime, 0));
+			wall[0].GetComponent<Renderer>().material.color = colors[Random.Range(0,(colors.Count))];
 		}
 	}
 
@@ -80,13 +121,15 @@ public class Move : MonoBehaviour {
 		if (other.gameObject.tag == "spike") {
 			this.transform.position = start;
 			Debug.Log ("Spike");
-			tiles = GameObject.FindGameObjectsWithTag ("tile");
 			//resets all tiles to black
 			foreach(GameObject tile in tiles){
 				tile.gameObject.GetComponent<Renderer>().material.color = Color.black;
 			}//foreach
-
+			// reset gate location
+			wall[0].transform.position = wallLoc;
 		}//if
+
+
         //if it hits the goal
         if (other.gameObject.tag == "goal")
         {
@@ -99,14 +142,20 @@ public class Move : MonoBehaviour {
             {
                 tile.gameObject.GetComponent<Renderer>().material.color = Color.black;
             }//foreach
+
             //move the wall back
+			// reset gate location
+			wall[0].transform.position = wallLoc;
+			coloredTiles = 0;
             if (wallDrop.isDown == true)
             {
                 //do that here tom//////////////////////////////
                 //
             }//if
+
             //increment the score
             score++;
+
         }//if
     }
 }
