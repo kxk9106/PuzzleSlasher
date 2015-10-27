@@ -78,10 +78,12 @@ public class Move : MonoBehaviour {
 		dir.z = -Input.acceleration.y*6;
 
 		if (score == 1) {
-			dir.x += -.5f * 6;
-			meow.text = "Heavy Eastern Wind";
+			//dir.x += -.5f * 6;
+			meow.text = "Bouncy Walls";
+            //bouncy walls and shit
+            GetComponent<PhysicMaterial>().bounciness = 1;
 
-		}
+        }
 		if (score == 2) {
 			dir.z += -.5f * 6;
 			meow.text = "Heavy Northern Wind";
