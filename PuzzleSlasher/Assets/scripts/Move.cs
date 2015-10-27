@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic; //for list
+using UnityEngine.UI;
 
 
 public class Move : MonoBehaviour {
@@ -10,6 +11,7 @@ public class Move : MonoBehaviour {
 	public bool blackTiles;
 	Vector3 start = new Vector3(-4.2f,.16f,-11.2f);
 	public GameObject[] tiles;
+	public Image progressBar;
 
 	public List<Color> colors;
 
@@ -36,21 +38,27 @@ public class Move : MonoBehaviour {
 		colors.Add (pink);
 		Color blue = new Color (0, 194, 255);
 		colors.Add (blue);
+
+		rb = GetComponent<Rigidbody> ();
+		wall = GameObject.FindGameObjectsWithTag ("gate");
+		coloredTiles = 0;
+		levelThreshold = .25f;
+		score = 0;
 	}
 
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody> ();
-		tiles = GameObject.FindGameObjectsWithTag ("tile");
-		wall = GameObject.FindGameObjectsWithTag ("gate");
-		coloredTiles = 0;
-		numTiles = tiles.Length;
-		levelThreshold = .25f;
-		score = 0;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		tiles = GameObject.FindGameObjectsWithTag ("tile");
+		numTiles = tiles.Length;
+		Debug.Log("tiles: " + tiles.Length);
+
+		progressBar.fillAmount = coloredTiles * 4 / numTiles;
+
 		//movement through phone tilt
 		dir.x = -Input.acceleration.x*6;
 		dir.z = -Input.acceleration.y*6;

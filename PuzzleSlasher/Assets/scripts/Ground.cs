@@ -49,10 +49,10 @@ public class Ground : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Vector3 ballPos = start;
-		GameObject.Instantiate (ball, ballPos, Quaternion.identity);
+		//GameObject.Instantiate (ball, ballPos, Quaternion.identity);
 	
 		//makes the floor with tiles
-		tiles = new List<GameObject> ();
+		//tiles = new List<GameObject> ();
 		for(float i = xStart; i < xEnd; i=i + xMazeSize/18){
 			for(float j = zStart; j < zEnd; j=j+zMazeSize/22){
 				Vector3 pos = new Vector3(i + .275f,0,j + .275f);
