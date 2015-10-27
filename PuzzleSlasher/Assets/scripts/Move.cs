@@ -43,7 +43,7 @@ public class Move : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		tiles = GameObject.FindGameObjectsWithTag ("tile");
 		wall = GameObject.FindGameObjectsWithTag ("gate");
-		coloredTiles = 50;
+		coloredTiles = 0;
 		numTiles = tiles.Length;
 		levelThreshold = .25f;
 		score = 0;
@@ -90,7 +90,7 @@ public class Move : MonoBehaviour {
 		}
 
 		if ((coloredTiles / numTiles) < levelThreshold) {
-			//coloredTiles = 0;
+			coloredTiles = 0;
 			//check the amount of colored tiles
 			foreach (GameObject tile in tiles) {
 				if (tile.gameObject.GetComponent<Renderer> ().material.color != Color.black) {
