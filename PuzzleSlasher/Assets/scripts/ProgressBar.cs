@@ -13,6 +13,7 @@ public class ProgressBar : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		mov = GameObject.FindGameObjectWithTag ("ball");
 	//	m = FindObjectOfType(typeof(Move));
 		//movw = (Move)mov.GetComponent (typeof(Move));
 		movw = mov.GetComponent<Move> ();
@@ -26,7 +27,7 @@ public class ProgressBar : MonoBehaviour {
 	void Update () {
 		movw = mov.GetComponent<Move> ();
 
-		Debug.Log ("wierjij" + movw.coloredTiles);
+		Debug.Log ("wierjij" + movw.ColoredTiles);
 		//progressBar.fillAmount = m.coloredTiles*4 / m.numTiles;
 	}
 
