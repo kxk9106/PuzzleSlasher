@@ -13,6 +13,7 @@ public class Move : MonoBehaviour {
 	public GameObject[] tiles;
 	public Image progressBar;
 
+
 	public List<Color> colors;
 
     //score - to determine level
@@ -25,6 +26,10 @@ public class Move : MonoBehaviour {
 	float levelThreshold;
 	GameObject[] wall;
 	Vector3 wallLoc = new Vector3(3.6f, 0.29f, -6.0f);
+
+	Text meow;
+
+
 
 	void Awake(){
 		//adds new colors to color list for tiles
@@ -39,20 +44,29 @@ public class Move : MonoBehaviour {
 		Color blue = new Color (0, 194, 255);
 		colors.Add (blue);
 
+
+
 		rb = GetComponent<Rigidbody> ();
 		wall = GameObject.FindGameObjectsWithTag ("gate");
 		coloredTiles = 0;
 		levelThreshold = .10f;
 		score = 0;
+
+
 	}
 
 	// Use this for initialization
 	void Start () {
 
+		meow = GameObject.Find("Direction").GetComponent<Text>();
+		meow.text = "Fill 20% of tiles";
 	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
+
 		tiles = GameObject.FindGameObjectsWithTag ("tile");
 		numTiles = tiles.Length;
 		Debug.Log("tiles: " + tiles.Length);
@@ -65,16 +79,24 @@ public class Move : MonoBehaviour {
 
 		if (score == 1) {
 			dir.x += -.5f * 6;
+			meow.text = "Heavy Eastern Wind";
+
 		}
 		if (score == 2) {
 			dir.z += -.5f * 6;
+			meow.text = "Heavy Northern Wind";
+
 		}
 		if (score == 3) {
 			dir.x += .5f *6;
+			meow.text = "Heavy Western Wind";
+
 		}
 
 		if (score == 4) {
 			dir.z += .5f * 6;
+			meow.text = "Heavy Southern Wind";
+
 		}
 
 		/*if (dir.sqrMagnitude > 1) {
