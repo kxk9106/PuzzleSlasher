@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic; //for list
-using UnityEngine.UI;
 
 
 public class Move : MonoBehaviour {
@@ -12,8 +11,6 @@ public class Move : MonoBehaviour {
 	Vector3 start = new Vector3(-4.2f,.16f,-11.2f);
 	public GameObject[] tiles;
 
-
-	
 	public List<Color> colors;
 
     //score - to determine level
@@ -21,15 +18,11 @@ public class Move : MonoBehaviour {
 
     //walldrop obj
     WallDrop wallDrop = new WallDrop();
-	public float coloredTiles;
-	public float numTiles;
+	float coloredTiles;
+	float numTiles;
 	float levelThreshold;
 	GameObject[] wall;
 	Vector3 wallLoc = new Vector3(3.6f, 0.29f, -6.0f);
-
-	public float ColoredTiles{
-		get{return coloredTiles;}
-	}
 
 	void Awake(){
 		//adds new colors to color list for tiles
@@ -43,7 +36,6 @@ public class Move : MonoBehaviour {
 		colors.Add (pink);
 		Color blue = new Color (0, 194, 255);
 		colors.Add (blue);
-
 	}
 
 	// Use this for initialization
@@ -59,7 +51,6 @@ public class Move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		//movement through phone tilt
 		dir.x = -Input.acceleration.x*6;
 		dir.z = -Input.acceleration.y*6;
