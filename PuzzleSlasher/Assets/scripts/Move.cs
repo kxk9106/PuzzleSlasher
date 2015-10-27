@@ -42,7 +42,7 @@ public class Move : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		wall = GameObject.FindGameObjectsWithTag ("gate");
 		coloredTiles = 0;
-		levelThreshold = .25f;
+		levelThreshold = .10f;
 		score = 0;
 	}
 
@@ -57,7 +57,7 @@ public class Move : MonoBehaviour {
 		numTiles = tiles.Length;
 		Debug.Log("tiles: " + tiles.Length);
 
-		progressBar.fillAmount = coloredTiles * 4 / numTiles;
+		progressBar.fillAmount = coloredTiles * 10 / numTiles;
 
 		//movement through phone tilt
 		dir.x = -Input.acceleration.x*6;
