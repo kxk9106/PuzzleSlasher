@@ -12,7 +12,7 @@ public class Move : MonoBehaviour {
 	Vector3 start = new Vector3(-4.2f,.16f,-11.2f);
 	public GameObject[] tiles;
 	public Image progressBar;
-    public PhysicMaterial material;/// <summary>//////////////
+    //public PhysicMaterial material;/// <summary>//////////////
 
 
 	public List<Color> colors;
@@ -80,20 +80,19 @@ public class Move : MonoBehaviour {
 
 		if (score == 1) {
 			//dir.x += -.5f * 6;
-			meow.text = "Bouncy Walls";
+			meow.text = "reverse controls";
             //bouncy walls and shit
             //1
-            GetComponent<Collider>().GetComponent<PhysicMaterial>().bounciness = 1;
+            //GetComponent<Collider>().GetComponent<PhysicMaterial>().bounciness = 1;
             //GetComponent<Collider>().collider.
             //GetComponent<PhysicMaterial>().bounciness = 1;
+            dir.x = -dir.z;
+            dir.z = -dir.x;
 
         }
 		if (score == 2) {
-            GetComponent<Collider>().GetComponent<PhysicMaterial>().bounciness = 0;
-            //dir.z += -.5f * 6;
-            meow.text = "Reverse Controls";
-            dir.x = -dir.z;
-            dir.z = -dir.x;
+			dir.z += -.5f * 6;
+			meow.text = "Heavy Northern Wind";
 
 		}
 		if (score == 3) {
