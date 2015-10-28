@@ -14,8 +14,9 @@ public class Move : MonoBehaviour {
 	public Image progressBar;
     //public PhysicMaterial material;/// <summary>//////////////
 
-
+	// Colors related
 	public List<Color> colors;
+	float frameCounter;
 
     //score - to determine level
     public int score;
@@ -70,7 +71,7 @@ public class Move : MonoBehaviour {
 
 		tiles = GameObject.FindGameObjectsWithTag ("tile");
 		numTiles = tiles.Length;
-		Debug.Log("tiles: " + tiles.Length);
+		//Debug.Log("tiles: " + tiles.Length);
 
 		progressBar.fillAmount = coloredTiles * 10 / numTiles;
 
@@ -80,32 +81,48 @@ public class Move : MonoBehaviour {
 
 		if (score == 1) {
 			//dir.x += -.5f * 6;
-			meow.text = "reverse controls";
+			meow.text = "Left Right Reversed";
             //bouncy walls and shit
             //1
             //GetComponent<Collider>().GetComponent<PhysicMaterial>().bounciness = 1;
             //GetComponent<Collider>().collider.
             //GetComponent<PhysicMaterial>().bounciness = 1;
-            dir.x = -dir.z;
-            dir.z = -dir.x;
+            dir.x = -dir.x;
+            //dir.z = -dir.z;
 
         }
 		if (score == 2) {
-			dir.z += -.5f * 6;
-			meow.text = "Heavy Northern Wind";
+			dir.x += -.5f * 6;
+			meow.text = "Heavy Eastern Wind";
 
 		}
 		if (score == 3) {
-			dir.x += .5f *6;
+			meow.text = "Controls Reversed";
+            dir.x = -dir.x;
+			dir.z = -dir.z;
+		}
+		if (score == 4) {
+			meow.text = "Think Before Doing";
+			if((coloredTiles / numTiles) < levelThreshold){
+				wall[0].transform.position = new Vector3(3.6f, -1.0f, -6.0f);
+			}
+			else{
+					wall[0].transform.position = wallLoc;
+			}
+		}
+		/*
+		if (score == 4) {
+			dir.z += -.5f *6;
 			meow.text = "Heavy Western Wind";
 
 		}
 
-		if (score == 4) {
+		if (score == 5) {
 			dir.z += .5f * 6;
 			meow.text = "Heavy Southern Wind";
 
 		}
+		*/
 
 		/*if (dir.sqrMagnitude > 1) {
 			dir.Normalize();
@@ -138,8 +155,12 @@ public class Move : MonoBehaviour {
 		} 
 		else {
 			wall[0].transform.Translate(new Vector3(0, -0.1f * Time.deltaTime, 0));
-			wall[0].GetComponent<Renderer>().material.color = colors[Random.Range(0,(colors.Count))];
+			if(frameCounter%5 == 0){
+				wall[0].GetComponent<Renderer>().material.color = colors[Random.Range(0,(colors.Count))];
+			}
 		}
+
+		frameCounter++;
 	}
 
 	void newPositionX(float x){
@@ -165,6 +186,7 @@ public class Move : MonoBehaviour {
 			}//foreach
 			// reset gate location
 			wall[0].transform.position = wallLoc;
+			coloredTiles = 0;
 		}//if
 
 
