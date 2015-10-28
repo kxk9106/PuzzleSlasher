@@ -89,8 +89,11 @@ public class Move : MonoBehaviour {
 
         }
 		if (score == 2) {
-			dir.z += -.5f * 6;
-			meow.text = "Heavy Northern Wind";
+            GetComponent<Collider>().GetComponent<PhysicMaterial>().bounciness = 0;
+            //dir.z += -.5f * 6;
+            meow.text = "Reverse Controls";
+            dir.x = -dir.z;
+            dir.z = -dir.x;
 
 		}
 		if (score == 3) {
