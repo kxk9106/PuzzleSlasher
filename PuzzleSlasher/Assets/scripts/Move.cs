@@ -12,6 +12,7 @@ public class Move : MonoBehaviour {
 	Vector3 start = new Vector3(-4.2f,.16f,-11.2f);
 	public GameObject[] tiles;
 	public Image progressBar;
+    public PhysicMaterial material;/// <summary>//////////////
 
 
 	public List<Color> colors;
@@ -81,7 +82,10 @@ public class Move : MonoBehaviour {
 			//dir.x += -.5f * 6;
 			meow.text = "Bouncy Walls";
             //bouncy walls and shit
-            GetComponent<PhysicMaterial>().bounciness = 1;
+            //1
+            GetComponent<Collider>().GetComponent<PhysicMaterial>().bounciness = 1;
+            //GetComponent<Collider>().collider.
+            //GetComponent<PhysicMaterial>().bounciness = 1;
 
         }
 		if (score == 2) {
