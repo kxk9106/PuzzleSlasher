@@ -35,17 +35,24 @@ public class Move : MonoBehaviour {
 
 	void Awake(){
 		//adds new colors to color list for tiles
-		Color green = new Color (43, 232, 0);
+		Color red = new Color (1, 0, 0);
+		colors.Add (red);
+		Color green = new Color (0, 1, 0);
 		colors.Add (green);
-		Color purple = new Color (83, 0, 255);
-		colors.Add (purple);
-		Color orange = new Color (255, 169, 0);
-		colors.Add (orange);
-		Color pink = new Color (232, 0,134);
-		colors.Add (pink);
-		Color blue = new Color (0, 194, 255);
+		Color blue = new Color (0, 0, 1);
 		colors.Add (blue);
 
+		Color yellow = new Color (1, 1, 0);
+		colors.Add (yellow);
+		Color purple = new Color (1, 0, 1);
+		colors.Add (purple);
+		Color skyBlue = new Color (0, 1, 1);
+		colors.Add (skyBlue);
+
+		Color orange = new Color (1, .43f, 0);
+		colors.Add(orange);
+		Color pink = new Color (1, .37f, .59f);
+		colors.Add(pink);
 
 
 		rb = GetComponent<Rigidbody> ();
@@ -148,15 +155,28 @@ public class Move : MonoBehaviour {
 			coloredTiles = 0;
 			//check the amount of colored tiles
 			foreach (GameObject tile in tiles) {
-				if (tile.gameObject.GetComponent<Renderer> ().material.color != Color.black) {
+				if (tile.gameObject.GetComponent<Renderer>().material.color != Color.black) {
+					// Flashing floors
+					if(frameCounter %35 == 0){
+						tile.gameObject.GetComponent<Renderer>().material.color = colors[Random.Range(0,(colors.Count))];
+					}
 					coloredTiles++;
 				}
 			}
 		} 
 		else {
 			wall[0].transform.Translate(new Vector3(0, -0.1f * Time.deltaTime, 0));
-			if(frameCounter%5 == 0){
+			if(frameCounter%35 == 0){
 				wall[0].GetComponent<Renderer>().material.color = colors[Random.Range(0,(colors.Count))];
+			}
+
+			// Flashing floors
+			foreach (GameObject tile in tiles) {
+				if (tile.gameObject.GetComponent<Renderer>().material.color != Color.black) {
+					if(frameCounter %35 == 0){
+						tile.gameObject.GetComponent<Renderer>().material.color = colors[Random.Range(0,(colors.Count))];
+					}
+				}
 			}
 		}
 
