@@ -34,6 +34,7 @@ public class Move : MonoBehaviour {
 
 
 	void Awake(){
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		//adds new colors to color list for tiles
 		Color red = new Color (1, 0, 0);
 		colors.Add (red);
@@ -58,7 +59,7 @@ public class Move : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		wall = GameObject.FindGameObjectsWithTag ("gate");
 		coloredTiles = 0;
-		levelThreshold = .10f;
+		levelThreshold = .20f;
 		score = 0;
 
 
@@ -80,7 +81,7 @@ public class Move : MonoBehaviour {
 		numTiles = tiles.Length;
 		//Debug.Log("tiles: " + tiles.Length);
 
-		progressBar.fillAmount = coloredTiles * 10 / numTiles;
+		progressBar.fillAmount = coloredTiles * 5 / numTiles;
 
 		//movement through phone tilt
 		dir.x = -Input.acceleration.x*6;
@@ -108,7 +109,11 @@ public class Move : MonoBehaviour {
             dir.x = -dir.x;
 			dir.z = -dir.z;
 		}
+
 		if (score == 4) {
+			Application.LoadLevel("Win");
+		}
+		/*if (score == 4) {
 			meow.text = "Think Before Doing";
 			if((coloredTiles / numTiles) < levelThreshold){
 				wall[0].transform.position = new Vector3(3.6f, -1.0f, -6.0f);
@@ -116,7 +121,7 @@ public class Move : MonoBehaviour {
 			else{
 					wall[0].transform.position = wallLoc;
 			}
-		}
+		}*/
 		/*
 		if (score == 4) {
 			dir.z += -.5f *6;
